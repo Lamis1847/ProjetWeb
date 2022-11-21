@@ -6,6 +6,7 @@
     <title>kanban login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link href="../css/login.css" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
   </head>
   <body>
     <section class="vh-100">
@@ -16,18 +17,25 @@
               class="img-fluid" alt="Sample image">
           </div>
           <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-            <form>
+            <div class="mx-auto mb-4" style="width: 200px;">
+              <h1>Connexion</h1>  
+            </div>
+            <form class="align-items-center" >
     
               <!-- Email input -->
-              <div class="form-outline mb-4">
-                <input type="text" id="userNameConn" class="form-control form-control-lg"
-                  placeholder="Nom d'utilisateur" />
+            
+              <div class="form-outline mt-4 mb-4">
+                <div class="input-group mb-3">
+                  <span class="m-3" data-feather="user"></span>
+                   <input type="text" class="form-control form-control-lg" placeholder="Nom d'utilisateur" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                </div>  
               </div>
     
-              <!-- Password input -->
-              <div class="form-outline mb-3">
-                <input type="password" id="PasswordConn" class="form-control form-control-lg"
-                  placeholder="mot de passe" />
+              <div class="form-outline mt-4 mb-4">
+                <div class="input-group mb-3">
+                  <span class="m-3" data-feather="lock"></span>
+                   <input type="password" class="form-control form-control-lg" placeholder="Mot de passe" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                </div>  
               </div>
     
               <div class="d-flex justify-content-between align-items-center">
@@ -59,6 +67,9 @@
         <!-- Copyright -->
       </div>
     </section>
+    <script>
+      feather.replace()
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
