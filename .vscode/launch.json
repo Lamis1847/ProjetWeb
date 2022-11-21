@@ -5,11 +5,12 @@
     "version": "0.2.0",
     "configurations": [
 
+
         {
             "type": "firefox",
             "request": "launch",
             "name": "Open login.html",
-            "file": "c:\\Users\\anasb\\OneDrive\\Bureau\\kanban\\login.html"
+            "file": "c:\\Users\\anasb\\OneDrive\\Bureau\\kanban\\public\\index.html"
         }
     ]
 }
