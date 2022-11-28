@@ -33,7 +33,7 @@ catch(Exception $e)
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-        <a type="button" class="btn btn-success mr-2" href="./templates/login.php">Se connecter</a>
+        <a type="button" class="btn btn-success mr-2" href="login.php">Se connecter</a>
     </div>
 </nav>
 
