@@ -18,7 +18,7 @@ if(isset($_POST['formconnexion'])) {
          $_SESSION['Id'] = $userinfo['Id'];
          $_SESSION['nom'] = $userinfo['nom'];
          $_SESSION['email'] = $userinfo['email'];
-         header("Location: index.php?Id=".$_SESSION['Id']);
+         header("Location: userPage.php?Id=".$_SESSION['Id']);
       } 
       else{
       
