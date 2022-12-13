@@ -1,3 +1,20 @@
+<?php
+try
+{
+	// On se connecte à MySQL
+	$mysqlClient = new PDO('mysql:host=localhost;dbname=projet_web', 'root', '');
+}
+catch(Exception $e)
+{
+	// En cas d'erreur, on affiche un message et on arrête tout
+        die('Erreur : '.$e->getMessage());
+}
+if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
+    $getid = intval($_GET['Id']);
+    $requser = $mysqlClient->prepare('SELECT * FROM user WHERE Id = ?');
+    $requser->execute(array($getid));
+    $userinfo = $requser->fetch();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +36,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-        <a type="button" class="btn btn-success mr-2" href="./templates/login.html">Se Connecter</a>
+        <a type="button" class="btn btn-success mr-2" href="deconnexion.php">Se déconnecter</a>
     </div>
 </nav>
 
@@ -28,29 +45,41 @@
         <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
+                <li class="nav-item">
+                       <?php
+                        echo "<a class='nav-link' href='userPage.php?Id=".$getid." '>  <span data-feather='home'></span>
+                       Kanban</a>";
+                        ?>
+                    </li>  
                     <li class="nav-item">
-                        <a class="nav-link" href="userPage.php">
-                            <span data-feather="home"></span>
-                            Kanban
-                        </a>
+                       <?php
+                        echo "<a class='nav-link' href='userKanban.php?Id=".$getid." '>  <span data-feather='home'></span>
+                        Mes Kanbans</a>";
+                        ?>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
-                            <span data-feather="home"></span>
-                            Mes Kanbans<span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="home"></span>
-                            Kanbans partagés avec moi
-                        </a>
-                    </li>
+                    <?php
+                        echo "<a class='nav-link' href='kanbanpartagés.php?Id=".$getid." '>  <span data-feather='home'></span>
+                        Kanbans partagés avec moi</a>";
+                        ?>
+                    </li>  
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <span data-feather="home"></span>
                             créer un kanban
                         </a>
+                    </li>
+                    <li class="nav-item">
+                    <?php
+                        echo "<a class='nav-link' href='taches.php?Id=".$getid." '>  <span data-feather='home'></span>
+                        Mes taches </a>";
+                        ?>
+                    </li>
+                    <li class="nav-item">
+                    <?php
+                        echo "<a class='nav-link' href='tachesglobales.php?Id=".$getid." '>  <span data-feather='home'></span>
+                        Mes taches globales</a>";
+                        ?>
                     </li>
                 </ul>
             </div>
@@ -58,21 +87,45 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-4.6 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <h1 class="h2">List des kanbans</h1>
+                <h1 class="h2">Liste de mes kanbans</h1>
             </div>
+            
+            <?php
+                   
+             $sqlQuery = $mysqlClient->prepare("SELECT titre, description, date FROM kanban where IdCreateur = ?");
+             $sqlQuery->execute(array($getid));
+            
+             $table_titre = array();
+             $table_description = array();
+             $table_date = array();
+            while ($kanbans = $sqlQuery->fetch()) 
+            {  
+            $table_titre[]=$kanbans['titre'];
+            $table_description[]=$kanbans['description'];
+            $table_date[]=$kanbans['date'];
+            
+            }
+            $number = $sqlQuery->rowCount();
+            
+            ?>
+            
             <div class="col-sm-6 col-md-4 col-xl-3">
+                <?php 
+                    for ($i=0; $i<$number; $i++)
+                    {
+                    ?>
                 <div class="card bg-light">
                     <div class="card-body">
-                        <h6 class="card-title text-uppercase text-truncate py-2">To Do</h6>
+                
                         <div class="items border border-light">
                             <div class="card draggable shadow-sm" id="" draggable="true" ondragstart="">
                                 <div class="card-body p-2">
                                     <div class="card-title">
-                                        <p class="text-muted float-right">date</p>
-                                        <a href="" class="lead font-weight-light">TSK-154</a>
+                                        <p class="text-muted float-right"><?php echo  ''.$table_date[$i]. '<br>'; ?></p>
+                                        <a href="" class="lead font-weight-light"><?php echo  ''.$table_titre[$i]. '<br>'; ?></a>
                                     </div>
                                     <p>
-                                        This is a description of a item on the board.
+                                    <?php echo  ''.$table_description[$i]. '<br>'; ?>
                                     </p>
                                     <button class="btn btn-primary btn-sm">View</button>
                                 </div>
@@ -81,6 +134,10 @@
                         </div>
                     </div>
                 </div>
+                <?php
+                    }
+                }
+                    ?>
             </div>
            
         </main>

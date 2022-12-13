@@ -12,7 +12,7 @@ if(isset($_POST['formconnexion'])) {
       $requser = $bdd->prepare("SELECT * FROM user WHERE userName = ? AND motDePasse = ?");
       $requser->execute(array($mailconnect, $mdpconnect));
       $userexist = $requser->rowCount();
-
+      echo $userexist;
       if($userexist == 1){
          $userinfo = $requser->fetch();
          $_SESSION['Id'] = $userinfo['Id'];
