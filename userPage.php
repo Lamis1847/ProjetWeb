@@ -90,7 +90,6 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <h1 class="h2">Liste des kanbans</h1>
             </div>
-
             <div class="row-content">
                 <div class="card-columns">
                     <div class="card">

@@ -64,7 +64,7 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
                         ?>
                     </li>  
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="createKanban.php">
                             <span data-feather="home"></span>
                             créer un kanban
                         </a>
@@ -108,7 +108,7 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
             $number = $sqlQuery->rowCount();
             
             ?>
-            
+            <div class="row row-content">
             <div class="col-sm-6 col-md-4 col-xl-3">
                 <?php 
                     for ($i=0; $i<$number; $i++)
@@ -139,6 +139,7 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
                 }
                     ?>
             </div>
+            <div>
            
         </main>
     </div>
