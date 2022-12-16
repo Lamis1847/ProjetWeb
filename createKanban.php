@@ -1,3 +1,20 @@
+<?php
+try
+{
+	// On se connecte à MySQL
+	$mysqlClient = new PDO('mysql:host=localhost;dbname=projet_web', 'root', '');
+}
+catch(Exception $e)
+{
+	// En cas d'erreur, on affiche un message et on arrête tout
+        die('Erreur : '.$e->getMessage());
+}
+if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
+    $getid = intval($_GET['Id']);
+    $requser = $mysqlClient->prepare('SELECT * FROM user WHERE Id = ?');
+    $requser->execute(array($getid));
+    $userinfo = $requser->fetch();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -21,7 +38,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-            <a type="button" class="btn btn-success mr-2" href="./templates/login.html">Se Connecter</a>
+            <a type="button" class="btn btn-success mr-2" href="deconnexion.php">Se déconnecter</a>
         </div>
     </nav>
 
@@ -29,32 +46,44 @@
         <div class="row">
             <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
                 <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                <span data-feather="home"></span>
-                                Kanban<span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="home"></span>
-                                Mes Kanbans
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="home"></span>
-                                Kanbans partagés avec moi
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="home"></span>
-                                créer un kanban
-                            </a>
-                        </li>
-                    </ul>
+                <ul class="nav flex-column">
+                <li class="nav-item">
+                       <?php
+                        echo "<a class='nav-link' href='userPage.php?Id=".$getid." '>  <span data-feather='home'></span>
+                       Kanban</a>";
+                        ?>
+                    </li>  
+                    <li class="nav-item">
+                       <?php
+                        echo "<a class='nav-link' href='userKanban.php?Id=".$getid." '>  <span data-feather='home'></span>
+                        Mes Kanbans</a>";
+                        ?>
+                    </li>
+                    <li class="nav-item">
+                    <?php
+                        echo "<a class='nav-link' href='kanbanpartagés.php?Id=".$getid." '>  <span data-feather='home'></span>
+                        Kanbans partagés avec moi</a>";
+                        ?>
+                    </li>  
+                    <li class="nav-item">
+                    <?php
+                        echo "<a class='nav-link' href='createKanban.php?Id=".$getid." '>  <span data-feather='home'></span>
+                        Créer des Kanbans </a>";
+                        ?>
+                    </li>
+                    <li class="nav-item">
+                    <?php
+                        echo "<a class='nav-link' href='taches.php?Id=".$getid." '>  <span data-feather='home'></span>
+                        Mes taches </a>";
+                        ?>
+                    </li>
+                    <li class="nav-item">
+                    <?php
+                        echo "<a class='nav-link' href='tachesglobales.php?Id=".$getid." '>  <span data-feather='home'></span>
+                        Mes taches globales</a>";
+                    ?>
+                    </li>
+                </ul>
                 </div>
             </nav>
 
@@ -63,22 +92,23 @@
                     <h1 class="h2">List des kanbans</h1>
                 </div>
                 <div class="row row-content">
-                    <form>
+                    <form enctype="multipart/form-data"  method="post"  <?php echo "action= 'InsertionKanban.php?Id=".$getid." ' ";?> > 
+                        <?php } ?>
                         <div class="form-row" id="beforTitle">
                             <div class="form-group col-md-6">
                                 <label for="inputTitle">Titre</label>
-                                <input type="text" class="form-control" id="inputTitle" placeholder="Titre">
+                                <input type="text" class="form-control" id="inputTitle" placeholder="Titre" name="titre" >
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="visibility">Visibilité</label>
-                                <select id="visibility" class="form-control">
-                                    <option selected>public</option>
-                                    <option>privé</option>
+                                <select id="visibility" class="form-control" name="visibilite">
+                                    <option selected value="public">public</option>
+                                    <option value="prive">privé</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="nbTable">Nombre Tables</label>
-                                <select onchange="selectItem()" id="nbTable" class="form-control">
+                                <select onchange="selectItem()" id="nbTable" class="form-control" name= "nbTable">
 
                                 </select>
                             </div>
@@ -88,9 +118,9 @@
                         </div>
                         <div class="form-group">
                             <label for="descriptionForKanban">Description</label>
-                            <textarea class="form-control" id="descriptionForKanban" rows="3"></textarea>
+                            <textarea class="form-control" id="descriptionForKanban" rows="3" name="description"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-success">Enregistrer</button>
+                        <button type="submit" class="btn btn-success" name="send" >Enregistrer</button>
                     </form>
                 </div>
 
