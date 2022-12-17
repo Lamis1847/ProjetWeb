@@ -65,10 +65,10 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
                         
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="home"></span>
-                            créer un kanban
-                        </a>
+                    <?php
+                        echo "<a class='nav-link' href='createKanban.php?Id=".$getid." '>  <span data-feather='home'></span>
+                        Créer des Kanbans </a>";
+                        ?>
                     </li>
                     <li class="nav-item">
                     <?php
@@ -90,20 +90,21 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <h1 class="h2">Liste des kanbans</h1>
             </div>
-            
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <?php echo " <a type='button' class='btn btn-success mr-2' href='trieKanbanPartage.php?Id=".$getid." '>
+                       Trier</a>"; ?>
+            </div>
             <?php
                 
-             $sqlQuery = $mysqlClient->prepare("SELECT kanban.titre, kanban.description, kanban.date FROM kanban
+             $sqlQuery = $mysqlClient->prepare("SELECT kanban.titre, kanban.description FROM kanban
              INNER JOIN participant ON kanban.Id = participant.Idkanban AND participant.Iduser = ?");
              $sqlQuery->execute(array($getid));
              $table_titre = array();
              $table_description = array();
-             $table_date = array();
             while ($kanbans = $sqlQuery->fetch()) 
             {  
             $table_titre[]=$kanbans['titre'];
             $table_description[]=$kanbans['description'];
-            $table_date[]=$kanbans['date'];
             
             }
             $number = $sqlQuery->rowCount();
@@ -122,7 +123,6 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
                             <div class="card draggable shadow-sm" id="" draggable="true" ondragstart="">
                                 <div class="card-body p-2">
                                     <div class="card-title">
-                                        <p class="text-muted float-right"><?php echo  ''.$table_date[$i]. '<br>'; ?></p>
                                         <a href="" class="lead font-weight-light"><?php echo  ''.$table_titre[$i]. '<br>'; ?></a>
                                     </div>
                                     <p>
@@ -131,6 +131,7 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
                                     <button class="btn btn-primary btn-sm">View</button>
                                 </div>
                             </div>
+                    
                             <div class="dropzone rounded" ondrop="" ondragover="" ondragleave=""> &nbsp; </div>
                         </div>
                     </div>

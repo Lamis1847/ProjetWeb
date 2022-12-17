@@ -36,10 +36,8 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-    <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
         <a type="button" class="btn btn-success mr-2" href="deconnexion.php">Se déconnecter</a>
     </div>
-   
 </nav>
 
 <div class="container-fluid">
@@ -50,9 +48,9 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
                 <li class="nav-item">
                        <?php
                         echo "<a class='nav-link' href='userPage.php?Id=".$getid." '>  <span data-feather='home'></span>
-                       Kanban</a>";
+                        Kanban</a>";
                         ?>
-                    </li>  
+                    </li>               
                     <li class="nav-item">
                        <?php
                         echo "<a class='nav-link' href='userKanban.php?Id=".$getid." '>  <span data-feather='home'></span>
@@ -64,7 +62,8 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
                         echo "<a class='nav-link' href='kanbanpartagés.php?Id=".$getid." '>  <span data-feather='home'></span>
                         Kanbans partagés avec moi</a>";
                         ?>
-                    </li>  
+                        
+                    </li>
                     <li class="nav-item">
                     <?php
                         echo "<a class='nav-link' href='createKanban.php?Id=".$getid." '>  <span data-feather='home'></span>
@@ -89,29 +88,23 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-4.6 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <h1 class="h2">Liste de mes kanbans</h1>
+                <h1 class="h2">Liste des kanbans</h1>
             </div>
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <?php echo " <a type='button' class='btn btn-success mr-2' href='trieTaches.php?Id=".$getid." '>
+            <?php echo " <a type='button' class='btn btn-success mr-2' href='trieKanbanPartage.php?Id=".$getid." '>
                        Trier</a>"; ?>
             </div>
             <?php
-                   
-             $sqlQuery = $mysqlClient->prepare("SELECT tache.titre, tache.description, tache.dateLimite, tache.status, kanban.titre FROM tache Inner join kanban ON tache.idKanban = kanban.Id AND tache.IdUser = ? ");
+                
+             $sqlQuery = $mysqlClient->prepare("SELECT kanban.titre, kanban.description FROM kanban
+             INNER JOIN participant ON kanban.Id = participant.Idkanban AND participant.Iduser = ? order by kanban.titre ASC ");
              $sqlQuery->execute(array($getid));
-            
-            $table_titre = array();
-            $table_description = array();
-            $table_date = array();
-            $table_status = array();
-            $table_kanban = array();
+             $table_titre = array();
+             $table_description = array();
             while ($kanbans = $sqlQuery->fetch()) 
             {  
             $table_titre[]=$kanbans['titre'];
             $table_description[]=$kanbans['description'];
-            $table_date[]=$kanbans['dateLimite'];
-            $table_status[]=$kanbans['status'];
-            $table_kanban[]=$kanbans['titre'];
             
             }
             $number = $sqlQuery->rowCount();
@@ -125,22 +118,20 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
                     ?>
                 <div class="card bg-light">
                     <div class="card-body">
+                
                         <div class="items border border-light">
                             <div class="card draggable shadow-sm" id="" draggable="true" ondragstart="">
                                 <div class="card-body p-2">
                                     <div class="card-title">
-                                        <p class="text-muted float-right"><?php echo  ''.$table_date[$i]. '<br>'; ?></p>
                                         <a href="" class="lead font-weight-light"><?php echo  ''.$table_titre[$i]. '<br>'; ?></a>
                                     </div>
                                     <p>
                                     <?php echo  ''.$table_description[$i]. '<br>'; ?>
                                     </p>
-                                    <p>
-                                    <?php echo  ''.$table_kanban[$i]. '<br>'; ?>
-                                    </p>
-                                    <button class="btn btn-primary btn-sm"><?php echo  ''.$table_status[$i]. '<br>'; ?></button>
+                                    <button class="btn btn-primary btn-sm">View</button>
                                 </div>
                             </div>
+                    
                             <div class="dropzone rounded" ondrop="" ondragover="" ondragleave=""> &nbsp; </div>
                         </div>
                     </div>
