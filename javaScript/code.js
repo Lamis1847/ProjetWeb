@@ -1,6 +1,6 @@
 function numberGenerator(){
     var select = document.getElementById('nbTable');
-    for (var i = 1; i < 5; i++){
+    for (var i = 1; i < 3; i++){
     select.options[select.options.length] = new Option(i+1, i);
     console.log(select.options[i]); 
   }
@@ -31,9 +31,10 @@ function selectItem(){
     var selecto = document.getElementById('nbTable');
     var value = selecto.options[selecto.selectedIndex].value;
     var divForm = document.getElementById('divForm');
+    var stat = ["A_FAIRE", "EN_COURS", "TERMINER"];
     divForm.innerHTML=''; 
     for(var i = 0 ; i <= value; i++){
-        divForm.innerHTML += `<div class="form-group"> <label for="title${i + 1}">Status${i + 1}</label><select class="form-control" id="status${i + 1}"><option></option></div>`;    
+        divForm.innerHTML += `<div class="form-group"> <label for="title${i + 1}">Status${i + 1}</label><select class="form-control" id="status${i + 1}"><option value="${stat[i]}">${stat[i]}</option></div>`;    
     }
 }
 selectItem(); 
