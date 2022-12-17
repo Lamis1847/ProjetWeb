@@ -64,10 +64,10 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
                         ?>
                     </li>  
                     <li class="nav-item">
-                        <a class="nav-link" href="createKanban.php">
-                            <span data-feather="home"></span>
-                            créer un kanban
-                        </a>
+                    <?php
+                        echo "<a class='nav-link' href='createKanban.php?Id=".$getid." '>  <span data-feather='home'></span>
+                        Créer des Kanbans </a>";
+                        ?>
                     </li>
                     <li class="nav-item">
                     <?php
