@@ -89,7 +89,7 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                         <h1 class="h2">List des kanbans</h1>
                     </div>
                     <div class="row row-content">
-                        <form enctype="multipart/form-data" method="post" <?php echo "action= 'InsertionKanban.php?Id=" . $getid . " ' "; ?>>
+                        <form enctype="multipart/form-data" method="post"q <?php echo "action= 'InsertionKanban.php?Id=" . $getid . " ' "; ?>>
                         <?php } ?>
                         <div class="form-row" id="beforTitle">
                             <div class="form-group col-md-6">
