@@ -36,10 +36,8 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-    <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
         <a type="button" class="btn btn-success mr-2" href="deconnexion.php">Se déconnecter</a>
     </div>
-   
 </nav>
 
 <div class="container-fluid">
@@ -92,34 +90,30 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
                 <h1 class="h2">Liste de mes kanbans</h1>
             </div>
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <?php echo " <a type='button' class='btn btn-success mr-2' href='trieTaches.php?Id=".$getid." '>
+            <?php echo " <a type='button' class='btn btn-success mr-2' href='trieTachesGlob.php?Id=".$getid." '>
                        Trier</a>"; ?>
             </div>
             <?php
                    
-             $sqlQuery = $mysqlClient->prepare("SELECT tache.titre, tache.description, tache.dateLimite, tache.status, kanban.titre FROM tache Inner join kanban ON tache.idKanban = kanban.Id AND tache.IdUser = ? ");
+             $sqlQuery = $mysqlClient->prepare("SELECT titre, description, dateLimite, status FROM tache where IdUser = ? order by dateLimite ASC ");
              $sqlQuery->execute(array($getid));
             
             $table_titre = array();
             $table_description = array();
-            $table_date = array();
-            $table_status = array();
-            $table_kanban = array();
             while ($kanbans = $sqlQuery->fetch()) 
             {  
             $table_titre[]=$kanbans['titre'];
             $table_description[]=$kanbans['description'];
             $table_date[]=$kanbans['dateLimite'];
             $table_status[]=$kanbans['status'];
-            $table_kanban[]=$kanbans['titre'];
             
             }
             $number = $sqlQuery->rowCount();
             
             ?>
-            
+           
             <div class="col-sm-6 col-md-4 col-xl-3">
-                <?php 
+            <?php 
                     for ($i=0; $i<$number; $i++)
                     {
                     ?>
@@ -134,9 +128,6 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
                                     </div>
                                     <p>
                                     <?php echo  ''.$table_description[$i]. '<br>'; ?>
-                                    </p>
-                                    <p>
-                                    <?php echo  ''.$table_kanban[$i]. '<br>'; ?>
                                     </p>
                                     <button class="btn btn-primary btn-sm"><?php echo  ''.$table_status[$i]. '<br>'; ?></button>
                                 </div>

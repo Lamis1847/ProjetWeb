@@ -33,15 +33,8 @@ function selectItem(){
     var divForm = document.getElementById('divForm');
     var stat = ["A_FAIRE", "EN_COURS", "TERMINE"];  
     divForm.innerHTML=''; 
-    for(var i = 0 ; i < value; i++){
-        //tu dois avoir name dans l'input de chaque statut
-        divForm.innerHTML += `<div class="form-group"> <label for="status${i + 1}">Statut${i + 1}</label><select name="Statut${i + 1}" class="form-control" id="status${i + 1}"></select></div>`;    
-        var status = `status${i + 1}`;
-        for(var j = 0; j < stat.length; j++){
-            var statusopt = `Statut${j+1}`; 
-            insertOptions(status, stat[j], statusopt);
-        }
-
+    for(var i = 0 ; i <= value; i++){
+        divForm.innerHTML += `<div class="form-group"> <label for="title${i + 1}">Status${i + 1}</label><select class="form-control" id="status${i + 1}"><option value="${stat[i]}">${stat[i]}</option></div>`;    
     }
     
 }

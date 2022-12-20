@@ -36,7 +36,6 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-    <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
         <a type="button" class="btn btn-success mr-2" href="deconnexion.php">Se déconnecter</a>
     </div>
    
@@ -97,7 +96,7 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
             </div>
             <?php
                    
-             $sqlQuery = $mysqlClient->prepare("SELECT tache.titre, tache.description, tache.dateLimite, tache.status, kanban.titre FROM tache Inner join kanban ON tache.idKanban = kanban.Id AND tache.IdUser = ? ");
+             $sqlQuery = $mysqlClient->prepare("SELECT tache.titre, tache.description, tache.dateLimite, tache.status, kanban.titre FROM tache Inner join kanban ON tache.idKanban = kanban.Id AND tache.IdUser = ? order by tache.dateLimite ASC");
              $sqlQuery->execute(array($getid));
             
             $table_titre = array();
