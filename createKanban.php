@@ -120,21 +120,6 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                         <button type="submit" class="btn btn-success" name="send">Enregistrer</button>
                         </form>
                     </div>
-                    <div class="row row-content">
-                        <table class="table">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Prenom</th>
-                                    <th scope="col">nom d'utilisateur</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-
-                    </div>
 
                 </main>
             </div>

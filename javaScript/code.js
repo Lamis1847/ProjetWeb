@@ -1,3 +1,7 @@
+
+var userNmber = 1 ; 
+onload= numberGenerator();
+
 function numberGenerator(){
     var select = document.getElementById('nbTable');
     for (var i = 2; i <= 3; i++){
@@ -5,7 +9,6 @@ function numberGenerator(){
     console.log(select.options[i]); 
   }
 }
-onload= numberGenerator(); 
 function insertAfter(referenceNode, newNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
@@ -33,8 +36,9 @@ function selectItem(){
     var divForm = document.getElementById('divForm');
     var stat = ["A_FAIRE", "EN_COURS", "TERMINE"];  
     divForm.innerHTML=''; 
-    for(var i = 0 ; i < value; i++){
-        divForm.innerHTML += `<div class="form-group"> <label for="status${i + 1}">Statut${i + 1}</label><select class="form-control" id="status${i + 1}" name="Statut${i + 1}"></select></div>`;    
+    for(var i = 0 ; i < value; i++){    
+        
+        divForm.innerHTML += `<div class="form-group"> <label for="status${i + 1}">Statut${i + 1}</label><select name="Statut${i + 1}" class="form-control" id="status${i + 1}"></select></div>`;    
         var status = `status${i + 1}`;
         for(var j = 0; j < stat.length; j++){
             var statusopt = `Statut${j+1}`; 
@@ -56,7 +60,29 @@ function insertOptions(object1, object2, opj3){
 
 
 function addNewForm(){
+    var element = document.getElementById('divUserForm');
+    element.innerHTML += `<div class="form-row" id="titlerow">
+    <div class="form-group col-md-3">
+        <input type="text" class="form-control" id="lastName${userNmber}" placeholder="Nom" name="userLastName${userNmber}">
+    </div>
+
+    <div class="form-group col-md-3">
+        <input type="text" class="form-control" id="firstName${userNmber}" placeholder="prenom" name="userfirstName${userNmber}">
+    </div>
+
+    <div class="form-group col-md-3">
+        <input type="text" class="form-control" id="userName${userNmber}" placeholder="nom d'utlisateur" name="userName${userNmber}">
+    </div>
+    
+    </div>`; 
+    userNmber++; 
+
     //get element : append child 
     //getinput : inserintoTable
     //adduser ==> clique button ==> addParticipent: loop to "inviteFiled{i}" --> add to participants where (idKanban = N°); 
+}
+
+function addTask(kanbanId, kanbanBord){
+    //add task to a specific kanban & bord
+    //task in the backend should have : statusColmun --> colmun == A_Faire | In_Progress |  terminate ;
 }
