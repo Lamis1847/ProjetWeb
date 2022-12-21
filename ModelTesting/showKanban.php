@@ -48,37 +48,43 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <?php
-                                echo "<a class='nav-link' href='userPage.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                                echo "<a class='nav-link' href='../userPage.php?Id=" . $getid . " '>  <span data-feather='home'></span>
                         Kanban</a>";
                                 ?>
                             </li>
                             <li class="nav-item">
                                 <?php
-                                echo "<a class='nav-link' href='userKanban.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                                echo "<a class='nav-link' href='../userKanban.php?Id=" . $getid . " '>  <span data-feather='home'></span>
                         Mes Kanbans</a>";
                                 ?>
                             </li>
                             <li class="nav-item">
                                 <?php
-                                echo "<a class='nav-link' href='kanbanpartagés.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                                echo "<a class='nav-link' href='../kanbanpartagés.php?Id=" . $getid . " '>  <span data-feather='home'></span>
                         Kanbans partagés avec moi</a>";
                                 ?>
 
                             </li>
                             <li class="nav-item">
                                 <?php
-                                echo "<a class='nav-link' href='createKanban.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                                echo "<a class='nav-link' href='../createKanban.php?Id=" . $getid . " '>  <span data-feather='home'></span>
                         Créer des Kanbans </a>";
                                 ?>
                             </li>
                             <li class="nav-item">
                                 <?php
-                                echo "<a class='nav-link' href='taches.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                                echo "<a class='nav-link' href='ModelTesting/InviteUser.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                             Inviter des utilisateurs </a>";
+                                ?>
+                            </li>
+                            <li class="nav-item">
+                                <?php
+                                echo "<a class='nav-link' href='../taches.php?Id=" . $getid . " '>  <span data-feather='home'></span>
                         Mes taches </a>";
                                 ?>
                             <li class="nav-item">
                             <?php
-                            echo "<a class='nav-link' href='tachesglobales.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                            echo "<a class='nav-link' href='../tachesglobales.php?Id=" . $getid . " '>  <span data-feather='home'></span>
                         Mes taches globales</a>";
                         } ?>
                             </li>

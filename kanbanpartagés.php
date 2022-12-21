@@ -71,6 +71,12 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
                         ?>
                     </li>
                     <li class="nav-item">
+                                <?php
+                                echo "<a class='nav-link' href='ModelTesting/InviteUser.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                             Inviter des utilisateurs </a>";
+                                ?>
+                    </li>
+                    <li class="nav-item">
                     <?php
                         echo "<a class='nav-link' href='taches.php?Id=".$getid." '>  <span data-feather='home'></span>
                         Mes taches </a>";

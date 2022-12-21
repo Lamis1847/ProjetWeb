@@ -74,7 +74,9 @@ function addNewForm(){
         <input type="text" class="form-control" id="userName${userNmber}" placeholder="nom d'utlisateur" name="userName${userNmber}">
     </div>
     
-    </div>`; 
+    </div>`;
+    var nbOfUsersElm = document.getElementById('userCount');
+    nbOfUsersElm.setAttribute("value", userNmber); 
     userNmber++; 
 
     //get element : append child 

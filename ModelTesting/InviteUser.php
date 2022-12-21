@@ -37,56 +37,55 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-                <a type="button" class="btn btn-success mr-2" href="deconnexion.php">Se déonnecter</a>
+                <a type="button" class="btn btn-success mr-2" href="deconnexion.php">Se déconnecter</a>
             </div>
         </nav>
 
         <div class="container-fluid">
             <div class="row">
-                <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
+            <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <?php
-                                echo "<a class='nav-link' href='userPage.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                                echo "<a class='nav-link' href='../userPage.php?Id=" . $getid . " '>  <span data-feather='home'></span>
                         Kanban</a>";
                                 ?>
                             </li>
                             <li class="nav-item">
                                 <?php
-                                echo "<a class='nav-link' href='userKanban.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                                echo "<a class='nav-link' href='../userKanban.php?Id=" . $getid . " '>  <span data-feather='home'></span>
                         Mes Kanbans</a>";
                                 ?>
                             </li>
                             <li class="nav-item">
                                 <?php
-                                echo "<a class='nav-link' href='kanbanpartagés.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                                echo "<a class='nav-link' href='../kanbanpartagés.php?Id=" . $getid . " '>  <span data-feather='home'></span>
                         Kanbans partagés avec moi</a>";
                                 ?>
-
                             </li>
                             <li class="nav-item">
                                 <?php
-                                echo "<a class='nav-link' href='createKanban.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                                echo "<a class='nav-link' href='../createKanban.php?Id=" . $getid . " '>  <span data-feather='home'></span>
                         Créer des Kanbans </a>";
                                 ?>
                             </li>
                             <li class="nav-item">
                                 <?php
-                                echo "<a class='nav-link' href='./ModelTestnig/inviteUser.php?Id=" . $getid . " '>  <span data-feather='home'></span>
-                        Créer des Kanbans </a>";
+                                echo "<a class='nav-link' href='ModelTesting/InviteUser.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                             Inviter des utilisateurs </a>";
                                 ?>
                             </li>
                             <li class="nav-item">
                                 <?php
-                                echo "<a class='nav-link' href='taches.php?Id=" . $getid . " '>  <span data-feather='home'></span>
-                                    Mes taches </a>";
+                                echo "<a class='nav-link' href='../taches.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                        Mes taches </a>";
                                 ?>
                             <li class="nav-item">
                             <?php
-                            echo "<a class='nav-link' href='tachesglobales.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                            echo "<a class='nav-link' href='../tachesglobales.php?Id=" . $getid . " '>  <span data-feather='home'></span>
                         Mes taches globales</a>";
-                        } ?>
+                         ?>
                             </li>
                         </ul>
                     </div>
@@ -96,7 +95,8 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                         <h1 class="h2">Inviter des utilisateurs</h1>
                     </div>
                     <div class="row row-content">
-                        <form action="">
+                        <form id ="inserUserForm" enctype="multipart/form-data" method="post" <?php echo "action= 'insertParticipant.php?Id=" . $getid . " ' "; ?>>
+                        <?php } ?>    
                             <div class="form-row" id="titlerow">
                                 <div class="form-group col-md-4">
                                     <label for="inputTitle">Titre</label>
@@ -124,6 +124,12 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                             </div>
                             <div id="divUserForm">
                             </div>
+                            <div class="form-row" id="titlerow">
+                                <div class="form-group col-md-3">
+                                    <label for="userCount">Nombre des utilisateurs</label>
+                                    <input type="number" class="form-control" id="userCount" placeholder="0" name="userCounts" disabled>
+                                </div>
+                            </div>
                         </form>
 
                     </div>
@@ -146,7 +152,7 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                         </table>
                     </div>
                     <div class="row row-content d-flex justify-content-center">
-                        <button type="submit" class="btn btn-success" name="send">Enregistrer</button>
+                        <button type="submit" class="btn btn-success" name="send" form="inserUserForm">Enregistrer</button>
                     </div>
                 </main>
             </div>
