@@ -56,4 +56,8 @@ function insertOptions(object1, object2, opj3){
 
 
 
-
+function addNewForm(){
+    //get element : append child 
+    //getinput : inserintoTable
+    //adduser ==> clique button ==> addParticipent: loop to "inviteFiled{i}" --> add to participants where (idKanban = N°); 
+}

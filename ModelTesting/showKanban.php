@@ -168,7 +168,7 @@
                                                 This is a description of a item on the board.
                                             </p>
                                             <button class="btn btn-primary btn-sm">View</button>
-                                        </div>
+                                        </div>  
                                     </div>
                                     <div class="dropzone rounded" ondrop="" ondragover="" ondragleave=""> &nbsp; </div>
                                 </div>
