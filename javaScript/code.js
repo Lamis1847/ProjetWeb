@@ -34,7 +34,6 @@ function selectItem(){
     var stat = ["A_FAIRE", "EN_COURS", "TERMINE"];  
     divForm.innerHTML=''; 
     for(var i = 0 ; i < value; i++){
-        //tu dois avoir name dans l'input de chaque statut
         divForm.innerHTML += `<div class="form-group"> <label for="status${i + 1}">Statut${i + 1}</label><select class="form-control" id="status${i + 1}" name="Statut${i + 1}"></select></div>`;    
         var status = `status${i + 1}`;
         for(var j = 0; j < stat.length; j++){

@@ -67,10 +67,12 @@ if( isset( $_POST['Statut2'])) {
 } 
 
 $Statut3 = ''; 
-if( isset( $_POST['Statut3'])) {
+if( isset($_POST['Statut3'])) {
     $Statut3 = $_POST['Statut3']; 
 } 
 
+//$Statut3 = $Statut3 == '' ? 'NULL':"'".$Statut3."'";
+echo $Statut3;
 $sql = "INSERT INTO kanban(titre,description,visibilite,IdCreateur,nbTable, Statut1, Statut2, Statut3) VALUES 
 ('$titre','$description','$visibilite','$getid','$nbTable', '$Statut1', '$Statut2', '$Statut3');";
  $req = $mysqlClient->query($sql);
