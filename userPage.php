@@ -88,26 +88,57 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-4.6 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <h1 class="h2">Liste des kanbans</h1>
+                <h1 class="h2">kanban disponibles</h1>
             </div>
+            <?php
+                $sqlQuery = 'SELECT Id, titre, description FROM kanban where visibilite = "public"';
+                $recipesStatement = $mysqlClient->prepare($sqlQuery);
+                $recipesStatement->execute();
+                //$kanbans = $recipesStatement->fetchAll();
+                $table_titre = array();
+                $table_description = array();
+                $table_id = array();
+                while ($kanbans = $recipesStatement->fetch()) 
+                {  
+                  $table_titre[]=$kanbans['titre'];
+                  $table_description[]=$kanbans['description'];
+                  $table_id[]=$kanbans['Id'];
+
+                }
+                $number = $recipesStatement->rowCount();
+                
+            ?>
             <div class="row-content">
                 <div class="card-columns">
-                    <div class="card">
+                    <?php 
+                    for ($i=0; $i<$number; $i++)
+                    {
+                        ?>
+                       <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">kanban</h5>
-                            <p class="card-text">kanban description</p>
+                            <h5 class="card-title"> <?php echo  ''.$table_titre[$i]. '<br>'; ?> </h5>
+                            <p class="card-text"> <?php echo  ''.$table_description[$i]. '<br>'; ?> </p>
                         </div>
+                      
                         <div class="card-footer text-white bg-dark">
                             <div class="btn-toolbar justify-content-end">
-                                <div class="btn-group mr-2">
-                                    
-                                    <a class="btn btn-sm btn-outline-success" href="#"><span data-feather="eye"></span></a>
-                                </div>
+                            <div class="btn-group mr-2">
+                            <?php
+                            echo "<a class='btn btn-sm btn-outline-success' href='ModelTesting/showKanban.php?Id=".$table_id[$i]." '> <span data-feather='eye'></span>
+                            </a>";
+                            ?>
+                             </div>
                             </div>
                         </div>
                     </div>
+        
+                    <?php
+                    }
+                    ?>
+                    
+                    
                 </div>
-            </div>
+            
         </main>
     </div>
 </div>
