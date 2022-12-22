@@ -37,7 +37,7 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-                <a type="button" class="btn btn-success mr-2" href="deconnexion.php">Se déonnecter</a>
+                <a type="button" class="btn btn-success mr-2" href="../PHP/deconnexion.php">Se déconnecter</a>
             </div>
         </nav>
 
@@ -73,7 +73,7 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                             </li>
                             <li class="nav-item">
                                 <?php
-                                echo "<a class='nav-link' href='ModelTesting/InviteUser.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                                echo "<a class='nav-link' href='InviteUser.php?Id=" . $getid . " '>  <span data-feather='home'></span>
                              Inviter des utilisateurs </a>";
                                 ?>
                             </li>
@@ -82,6 +82,13 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                                 echo "<a class='nav-link' href='../taches.php?Id=" . $getid . " '>  <span data-feather='home'></span>
                         Mes taches </a>";
                                 ?>
+                            </li>
+                            <li class="nav-item">
+                                <?php
+                                echo "<a class='nav-link' href='addTask.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                                    Créer une tâche </a>";
+                                ?>
+                            </li>
                             <li class="nav-item">
                             <?php
                             echo "<a class='nav-link' href='../tachesglobales.php?Id=" . $getid . " '>  <span data-feather='home'></span>
@@ -106,6 +113,13 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                             $sqlQuery = $mysqlClient->prepare("SELECT Statut1, Statut2, Statut3 FROM kanban where Id = ?");
                             $sqlQuery->execute(array($getidkanban));
 
+                            $sql = $mysqlClient->prepare("SELECT titre, description, dateLimite FROM tache where idKanban = ?");
+                            $sql->execute(array($getidkanban));
+                               
+                            $table_titre = array();
+                            $table_description = array();
+                            $table_dateLimite = array();
+
                             $table_Statut1 = array();
                             $table_Statut2 = array();
                             $table_Statut3 = array();
@@ -114,13 +128,23 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                                 $table_Statut2[] = $kanbans['Statut2'];
                                 $table_Statut3[] = $kanbans['Statut3'];
                             }
+                            while ($taches = $sql->fetch()) {
+                                $table_titre[] = $taches['titre'];
+                                $table_description[] = $taches['description'];
+                                $table_dateLimite[] = $taches['dateLimite'];
+                            }
                             $number = $sqlQuery->rowCount();
-
+                            $num = $sql->rowCount();
                         ?>
+                        
                             <div class="col-sm-6 col-md-4 col-xl-3">
+                            <?php
+                            for ($j = 0; $j < $num; $j++) {
+                               ?> 
                                 <div class="card bg-light">
                                     <?php
                                     for ($i = 0; $i < $number; $i++) {
+                                      
                                     ?>
                                         <div class="card-body">
                                             <h6 class="card-title text-uppercase text-truncate py-2"><?php echo  '' . $table_Statut1[$i] . '<br>'; ?></h6>
@@ -128,13 +152,13 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                                                 <div class="card draggable shadow-sm" id="" draggable="true" ondragstart="">
                                                     <div class="card-body p-2">
                                                         <div class="card-title">
-                                                            <p class="text-muted float-right">date</p>
-                                                            <a href="" class="lead font-weight-light">TSK-154</a>
+                                                            <p class="text-muted float-right"><?php echo  '' . $table_dateLimite[$j] . '<br>'; ?></p>
+                                                            <a href="" class="lead font-weight-light"><?php echo  '' . $table_titre[$j] . '<br>'; ?></a>
                                                         </div>
                                                         <p>
-                                                            This is a description of a item on the board.
+                                                        <?php echo  '' . $table_description[$j] . '<br>'; ?>
                                                         </p>
-                                                        <button class="btn btn-primary btn-sm">View</button>
+                                                   
                                                     </div>
                                                 </div>
                                                 <div class="dropzone rounded" ondrop="" ondragover="" ondragleave=""> &nbsp; </div>
@@ -157,7 +181,7 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                                                     <p>
                                                         This is a description of a item on the board.
                                                     </p>
-                                                    <button class="btn btn-primary btn-sm">View</button>
+                                               
                                                 </div>
                                             </div>
                                             <div class="dropzone rounded" ondrop="" ondragover="" ondragleave=""> &nbsp; </div>
@@ -184,7 +208,7 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                                                     <p>
                                                         This is a description of a item on the board.
                                                     </p>
-                                                    <button class="btn btn-primary btn-sm">View</button>
+                                            
                                                 </div>
                                             </div>
                                             <div class="dropzone rounded" ondrop="" ondragover="" ondragleave=""> &nbsp; </div>
@@ -194,6 +218,7 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                             </div>
                     <?php
                                     }
+                                }
                                 }
                     ?>
 

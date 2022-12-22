@@ -39,6 +39,6 @@ if( isset( $_POST['numero'])) {
 $sql = "INSERT INTO user (nom,prenom,email,userName,motDePasse,numero) VALUES 
 ('$nom','$prenom','$email','$userName','$motDePasse','$numero');";
  $req = $pdo->query($sql);
-header("location:login.php");
+header("location:../login.php");
 
 ?>

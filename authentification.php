@@ -16,7 +16,7 @@
               class="img-fluid" alt="Sample image">
           </div>
           <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-            <form method="post" action="verificationIns.php">
+            <form method="post" action="PHP/verificationIns.php">
                 <!-- Firstname input -->
                 <div class="form-outline mb-4">
                 <input type="text" id="firstNameAuth" class="form-control form-control-lg"

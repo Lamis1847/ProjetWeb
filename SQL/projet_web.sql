@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 20 déc. 2022 à 16:09
+-- Généré le :  jeu. 22 déc. 2022 à 23:01
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -36,20 +36,23 @@ CREATE TABLE IF NOT EXISTS `kanban` (
   `visibilite` enum('public','prive') COLLATE utf8mb4_bin NOT NULL,
   `IdCreateur` int(255) NOT NULL,
   `nbTable` int(255) NOT NULL,
-  `Statut1` enum('A_FAIRE','EN_COURS','TERMINE') COLLATE utf8mb4_bin NOT NULL,
-  `Statut2` enum('A_FAIRE','EN_COURS','TERMINE') COLLATE utf8mb4_bin NOT NULL,
-  `Statut3` enum('A_FAIRE','EN_COURS','TERMINE') COLLATE utf8mb4_bin NOT NULL,
+  `Statut1` enum('A_FAIRE','EN_COURS','TERMINE') COLLATE utf8mb4_bin DEFAULT NULL,
+  `Statut2` enum('A_FAIRE','EN_COURS','TERMINE') COLLATE utf8mb4_bin DEFAULT NULL,
+  `Statut3` enum('A_FAIRE','EN_COURS','TERMINE','NULL') COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Déchargement des données de la table `kanban`
 --
 
 INSERT INTO `kanban` (`Id`, `titre`, `description`, `visibilite`, `IdCreateur`, `nbTable`, `Statut1`, `Statut2`, `Statut3`) VALUES
-(1, 'kanban', 'kanban description', 'public', 1, 0, 'A_FAIRE', 'A_FAIRE', 'A_FAIRE'),
-(2, 'ABCD', 'kanban 2 description', 'public', 1, 0, 'A_FAIRE', 'A_FAIRE', 'A_FAIRE'),
-(3, 'news9', 'hello', 'public', 1, 1, 'A_FAIRE', 'A_FAIRE', 'A_FAIRE');
+(1, 'kanban', 'kanban description', 'public', 1, 0, 'A_FAIRE', 'EN_COURS', 'TERMINE'),
+(2, 'ABCD', 'kanban 2 description', 'public', 1, 0, 'A_FAIRE', 'EN_COURS', 'TERMINE'),
+(3, 'news9', 'hello', 'public', 1, 1, 'A_FAIRE', 'EN_COURS', 'TERMINE'),
+(5, 'test2', '', 'prive', 1, 3, 'A_FAIRE', 'EN_COURS', 'NULL'),
+(11, '', '', 'public', 1, 2, 'A_FAIRE', 'EN_COURS', 'NULL'),
+(12, 'hi', '', 'public', 1, 3, 'A_FAIRE', 'EN_COURS', 'TERMINE');
 
 -- --------------------------------------------------------
 
@@ -63,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `participant` (
   `Iduser` int(255) NOT NULL,
   `Idkanban` int(255) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Déchargement des données de la table `participant`
@@ -71,7 +74,9 @@ CREATE TABLE IF NOT EXISTS `participant` (
 
 INSERT INTO `participant` (`Id`, `Iduser`, `Idkanban`) VALUES
 (1, 1, 1),
-(2, 1, 2);
+(2, 1, 2),
+(25, 1, 3),
+(24, 6, 3);
 
 -- --------------------------------------------------------
 
@@ -87,9 +92,9 @@ CREATE TABLE IF NOT EXISTS `tache` (
   `idKanban` int(255) NOT NULL,
   `idUser` int(255) NOT NULL,
   `dateLimite` date NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_bin NOT NULL,
+  `status` enum('affectee','non affectee') COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Déchargement des données de la table `tache`
@@ -97,7 +102,9 @@ CREATE TABLE IF NOT EXISTS `tache` (
 
 INSERT INTO `tache` (`Id`, `titre`, `description`, `idKanban`, `idUser`, `dateLimite`, `status`) VALUES
 (1, 'tache1', 'description tache', 1, 1, '2022-12-15', 'affectee'),
-(2, 'tache2', 'description tache', 2, 1, '2022-12-14', 'affectee');
+(2, 'tache2', 'description tache', 2, 1, '2022-12-14', 'affectee'),
+(3, 'hello', 'hello it is me yes', 1, 1, '2022-12-13', 'affectee'),
+(4, 'test', 'pl$*l^*', 3, 6, '2022-12-21', 'non affectee');
 
 -- --------------------------------------------------------
 

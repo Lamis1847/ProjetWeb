@@ -41,11 +41,11 @@ for ($i = 0; $i <= $userCounts; $i++) {
     $req = $mysqlClient->query($sql);
 
 }
-}
+
 
  header("location:InviteUser.php?Id=".$getid." ");
 
-
+}
 ?>
           
 	

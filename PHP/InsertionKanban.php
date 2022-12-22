@@ -15,27 +15,6 @@
         $requser = $mysqlClient->prepare('SELECT * FROM user WHERE Id = ?');
         $requser->execute(array($getid));
         $userinfo = $requser->fetch();
-     /*   
-    if(empty($_POST["send"])) {
-        $titre = $_POST["titre"];
-        $visibilite= $_POST["visibilite"];
-        $nbTable = $_POST["nbTable"];
-        $description = $_POST["description"];
-        $IdCreateur = $getid;
-        echo $description;
-     $stmt = $mysqlClient->prepare('INSERT INTO kanban(titre,
-     visibilite, nbTable, description, IdCreateur) VALUES(:titre,
-     :visibilite, :nbTable, :nbTable, :description, :IdCreateur)');
-     $stmt->execute(array(
-     'titre' => $titre,
-     'description' => $description,
-     'visibilite' => $visibilite,
-     'IdCreateur' => $IdCreateur,
-     'nbTable' => $nbTable
-     ));
-     }
- //header("location:createKanban.php?Id=".$getid." ");
-    }*/
 
 $titre = ''; 
 if( isset( $_POST['titre'])) {
@@ -76,7 +55,7 @@ echo $Statut3;
 $sql = "INSERT INTO kanban(titre,description,visibilite,IdCreateur,nbTable, Statut1, Statut2, Statut3) VALUES 
 ('$titre','$description','$visibilite','$getid','$nbTable', '$Statut1', '$Statut2', '$Statut3');";
  $req = $mysqlClient->query($sql);
- header("location:createKanban.php?Id=".$getid." ");
+ header("location:../createKanban.php?Id=".$getid." ");
 
     }
 ?>

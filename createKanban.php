@@ -35,7 +35,7 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-                <a type="button" class="btn btn-success mr-2" href="deconnexion.php">Se déconnecter</a>
+                <a type="button" class="btn btn-success mr-2" href="PHP/deconnexion.php">Se déconnecter</a>
             </div>
         </nav>
 
@@ -95,7 +95,7 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                         <h1 class="h2">List des kanbans</h1>
                     </div>
                     <div class="row row-content">
-                        <form enctype="multipart/form-data" method="post" <?php echo "action= 'InsertionKanban.php?Id=" . $getid . " ' "; ?>>
+                        <form enctype="multipart/form-data" method="post" <?php echo "action= 'PHP/InsertionKanban.php?Id=" . $getid . " ' "; ?>>
                         <?php } ?>
                         <div class="form-row" id="beforTitle">
                             <div class="form-group col-md-6">

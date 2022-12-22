@@ -36,7 +36,7 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-        <a type="button" class="btn btn-success mr-2" href="deconnexion.php">Se déconnecter</a>   
+        <a type="button" class="btn btn-success mr-2" href="PHP/deconnexion.php">Se déconnecter</a>   
     </div>
     
 </nav>
@@ -81,6 +81,12 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
                         echo "<a class='nav-link' href='taches.php?Id=".$getid." '>  <span data-feather='home'></span>
                         Mes taches </a>";
                         ?>
+                    </li>
+                    <li class="nav-item">
+                                <?php
+                                echo "<a class='nav-link' href='ModelTesting/addTask.php?Id=" . $getid . " '>  <span data-feather='home'></span>
+                                    Créer une tâche </a>";
+                                ?>
                     </li>
                     <li class="nav-item">
                     <?php

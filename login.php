@@ -23,7 +23,7 @@
             <div class="mx-auto mb-4" style="width: 200px;">
               <h1>Connexion</h1>  
             </div>
-            <form  method="post" action="verifylogin.php">
+            <form  method="post" action="PHP/verifylogin.php">
     
               <!-- Email input -->
               <div class="form-outline mb-4">
@@ -50,7 +50,7 @@
     
               <div class="text-center mx-auto mt-4 pt-2">
                 <button class="btn btn-dark btn-lg" type="submit" name="formconnexion">Se connecter</button>
-                <p class="small fw-bold mt-4 pt-1 mb-0">Vous n'avez pas de compte ?  <a href="./authentification.php" class="link-danger">S'authentififer</a></p>
+                <p class="small fw-bold mt-4 pt-1 mb-0">Vous n'avez pas de compte ?  <a href="authentification.php" class="link-danger">S'authentififer</a></p>
               </div>  
             </form>
           </div>
