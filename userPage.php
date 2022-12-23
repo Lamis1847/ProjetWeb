@@ -99,7 +99,7 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
 
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-4.6 px-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                        <h1 class="h2">kanban disponibles</h1>
+                        <h1 class="h2">Kanban</h1>
                     </div>
                     <?php
                     $sqlQuery = 'SELECT Id, titre, description FROM kanban where visibilite = "public"';

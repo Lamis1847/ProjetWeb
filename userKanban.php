@@ -99,7 +99,7 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
 
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-4.6 px-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Liste de mes kanbans</h1>
+                        <h1 class="h2">Mes Kanbans</h1>
                     </div>
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
                         <?php echo " <a type='button' class='btn btn-success mr-2' href='trieKanban.php?Id=" . $getid . " '>
