@@ -25,7 +25,6 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="./css/index.css" rel="stylesheet" type="text/css" media="screen">
-    <title>MesKanbans</title>
 
 </head>
 <body>
@@ -100,9 +99,9 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-4.6 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <h1 class="h2">Liste de mes kanbans</h1>
+                <h1 class="h2">Mes Taches</h1>
             </div>
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
             <?php echo " <a type='button' class='btn btn-success mr-2' href='trieTaches.php?Id=".$getid." '>
                        Trier</a>"; ?>
             </div>
@@ -128,12 +127,12 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
             $number = $sqlQuery->rowCount();
             
             ?>
-            
-            <div class="col-sm-6 col-md-4 col-xl-3">
-                <?php 
+            <div class="row row-content">
+            <?php 
                     for ($i=0; $i<$number; $i++)
                     {
                     ?>
+            <div class="col-sm-6 col-md-4 col-xl-3">        
                 <div class="card bg-light">
                     <div class="card-body">
                         <div class="items border border-light">
@@ -156,12 +155,12 @@ if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
                         </div>
                     </div>
                 </div>
+            </div>
                 <?php
                     }
                 }
                     ?>
             </div>
-           
         </main>
     </div>
 </div>
