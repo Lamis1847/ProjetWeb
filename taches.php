@@ -131,7 +131,7 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                         <?php
                         for ($i = 0; $i < $number; $i++) {
                         ?>
-                            <div class="col-sm-6 col-md-4 col-xl-3">
+                            <div class="col-sm-6 col-md-4 col-xl-3 mb-2">
                                 <div class="card bg-light">
                                     <div class="card-body">
                                         <div class="items border border-light">
