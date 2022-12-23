@@ -19,7 +19,6 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="./css/index.css" rel="stylesheet" type="text/css" media="screen">
-        <title>Rendez Vous</title>
 
     </head>
 

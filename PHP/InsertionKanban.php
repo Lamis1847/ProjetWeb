@@ -1,5 +1,5 @@
 <?PHP
-    include './condb.php' ;
+include '../PHP/condb.php' ;
     
 	if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
         $getid = intval($_GET['Id']);

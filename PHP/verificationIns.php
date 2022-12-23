@@ -1,7 +1,7 @@
 <?php
-$dsn="mysql:dbname=projet_web; host=127.0.0.1;";
+$dsn="mysql:dbname=projet; host=127.0.0.1;";
 try{
-  $pdo=new PDO($dsn,"root","");
+  $pdo=new PDO($dsn,"projet","tejorp");
 }
 catch(PDOException $ex){
   printf("erreur de connexion à la base de donnée", $ex->getMessage());
