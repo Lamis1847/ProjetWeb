@@ -128,7 +128,7 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                                 <div class="card bg-light">
                                     <div class="card-body">
 
-                                        <div class="items border border-light">
+                                        <div class="items border border-light mb-2">
                                             <div class="card draggable shadow-sm" id="" draggable="true" ondragstart="">
                                                 <div class="card-body p-2">
                                                     <div class="card-title">
