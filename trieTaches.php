@@ -1,13 +1,11 @@
 <?php
-try
-{
-	// On se connecte à MySQL
-	$mysqlClient = new PDO('mysql:host=localhost;dbname=projet', 'projet', 'tejorp');
-}
-catch(Exception $e)
-{
-	// En cas d'erreur, on affiche un message et on arrête tout
-        die('Erreur : '.$e->getMessage());
+try {
+    // On se connecte à MySQL
+    //$mysqlClient = new PDO('mysql:host=localhost;dbname=projet', 'projet', 'tejorp');
+    $mysqlClient = new PDO('mysql:host=localhost;dbname=projet_web', 'root', '');
+} catch (Exception $e) {
+    // En cas d'erreur, on affiche un message et on arrête tout
+    die('Erreur : ' . $e->getMessage());
 }
 if(isset($_GET['Id']) AND $_GET['Id'] > 0) {
     $getid = intval($_GET['Id']);

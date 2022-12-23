@@ -1,11 +1,5 @@
 <?php
-try {
-    // On se connecte à MySQL
-    $mysqlClient = new PDO('mysql:host=localhost;dbname=projet', 'projet', 'tejorp');
-} catch (Exception $e) {
-    // En cas d'erreur, on affiche un message et on arrête tout
-    die('Erreur : ' . $e->getMessage());
-}
+include '../PHP/condb.php';
 if (isset($_GET['Id']) and $_GET['Id'] > 0) {
     $getid = intval($_GET['Id']);
     $requser = $mysqlClient->prepare('SELECT * FROM user WHERE Id = ?');
@@ -115,7 +109,7 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
 
                             $sql = $mysqlClient->prepare("SELECT titre, description, dateLimite FROM tache where idKanban = ?");
                             $sql->execute(array($getidkanban));
-                               
+
                             $table_titre = array();
                             $table_description = array();
                             $table_dateLimite = array();
@@ -136,91 +130,116 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
                             $number = $sqlQuery->rowCount();
                             $num = $sql->rowCount();
                         ?>
-                        
-                            <div class="col-sm-6 col-md-4 col-xl-3">
+
                             <?php
-                            for ($j = 0; $j < $num; $j++) {
-                               ?> 
-                                <div class="card bg-light">
-                                    <?php
-                                    for ($i = 0; $i < $number; $i++) {
-                                      
-                                    ?>
+                            for ($i = 0; $i < $number; $i++) {
+                            ?>
+
+                                <div class="col-sm-6 col-md-4 col-xl-3">
+                                    <div class="card bg-light">
                                         <div class="card-body">
                                             <h6 class="card-title text-uppercase text-truncate py-2"><?php echo  '' . $table_Statut1[$i] . '<br>'; ?></h6>
-                                            <div class="items border border-light">
-                                                <div class="card draggable shadow-sm" id="" draggable="true" ondragstart="">
-                                                    <div class="card-body p-2">
-                                                        <div class="card-title">
-                                                            <p class="text-muted float-right"><?php echo  '' . $table_dateLimite[$j] . '<br>'; ?></p>
-                                                            <a href="" class="lead font-weight-light"><?php echo  '' . $table_titre[$j] . '<br>'; ?></a>
+                                            <!--tasks goes Here-->
+                                            <?php for ($j = 0; $j < $num; $j++) {
+                                            ?>
+                                                <div class="items border border-light">
+                                                    <div class="card draggable shadow-sm" id="" draggable="true" ondragstart="">
+                                                        <div class="card-body p-2">
+                                                            <div class="card-title">
+                                                                <p class="text-muted float-right"><?php echo  '' . $table_dateLimite[$j] . '<br>'; ?></p>
+                                                                <a href="" class="lead font-weight-light"><?php echo  '' . $table_titre[$j] . '<br>'; ?></a>
+                                                            </div>
+                                                            <p>
+                                                                <?php echo  '' . $table_description[$j] . '<br>'; ?>
+                                                            </p>
+
                                                         </div>
-                                                        <p>
-                                                        <?php echo  '' . $table_description[$j] . '<br>'; ?>
-                                                        </p>
-                                                   
                                                     </div>
+                                                    <div class="dropzone rounded" ondrop="" ondragover="" ondragleave=""> &nbsp; </div>
                                                 </div>
-                                                <div class="dropzone rounded" ondrop="" ondragover="" ondragleave=""> &nbsp; </div>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                            <!-- first one ends here-->
-                            <div class="col-sm-6 col-md-4 col-xl-3">
-                                <div class="card bg-light">
-                                    <div class="card-body">
-                                        <h6 class="card-title text-uppercase text-truncate py-2"><?php echo  '' . $table_Statut2[$i] . '<br>'; ?></h6>
-                                        <div class="items border border-light">
-                                            <div class="card draggable shadow-sm" id="" draggable="true" ondragstart="">
-                                                <div class="card-body p-2">
-                                                    <div class="card-title">
-                                                        <p class="text-muted float-right">date</p>
-                                                        <a href="" class="lead font-weight-light">TSK-154</a>
-                                                    </div>
-                                                    <p>
-                                                        This is a description of a item on the board.
-                                                    </p>
-                                               
-                                                </div>
-                                            </div>
-                                            <div class="dropzone rounded" ondrop="" ondragover="" ondragleave=""> &nbsp; </div>
+                                            <?php
+                                            } ?>
+
+                                            <!--Ends Here-->
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            <?php } ?>
+                            <?php
+                            for ($i = 0; $i < $number; $i++) {
+                            ?>
 
-                            <div class="col-sm-6 col-md-4 col-xl-3">
-                                <div class="card bg-light">
-                                    <div class="card-body">
-                                        <h6 class="card-title text-uppercase text-truncate py-2"> <?php
+                                <div class="col-sm-6 col-md-4 col-xl-3">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h6 class="card-title text-uppercase text-truncate py-2"><?php echo  '' . $table_Statut2[$i] . '<br>'; ?></h6>
+                                            <!--tasks goes Here-->
+                                            <?php for ($j = 0; $j < $num; $j++) {
+                                            ?>
+                                                <div class="items border border-light">
+                                                    <div class="card draggable shadow-sm" id="" draggable="true" ondragstart="">
+                                                        <div class="card-body p-2">
+                                                            <div class="card-title">
+                                                                <p class="text-muted float-right"><?php echo  '' . $table_dateLimite[$j] . '<br>'; ?></p>
+                                                                <a href="" class="lead font-weight-light"><?php echo  '' . $table_titre[$j] . '<br>'; ?></a>
+                                                            </div>
+                                                            <p>
+                                                                <?php echo  '' . $table_description[$j] . '<br>'; ?>
+                                                            </p>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="dropzone rounded" ondrop="" ondragover="" ondragleave=""> &nbsp; </div>
+                                                </div>
+                                            <?php
+                                            } ?>
+
+                                            <!--Ends Here-->
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                            <?php
+                            for ($i = 0; $i < $number; $i++) {
+                            ?>
+
+                                <div class="col-sm-6 col-md-4 col-xl-3">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h6 class="card-title text-uppercase text-truncate py-2"><?php
                                                                                                     if ($table_Statut3[$i] != NULL) {
                                                                                                         echo  '' . $table_Statut3[$i] . '<br>';
                                                                                                     } else echo 'TERMINE';
                                                                                                     ?></h6>
-                                        <div class="items border border-light">
-                                            <div class="card draggable shadow-sm" id="" draggable="true" ondragstart="">
-                                                <div class="card-body p-2">
-                                                    <div class="card-title">
-                                                        <p class="text-muted float-right">date</p>
-                                                        <a href="" class="lead font-weight-light">TSK-154</a>
+                                            <!--tasks goes Here-->
+                                            <?php for ($j = 0; $j < $num; $j++) {
+                                            ?>
+                                                <div class="items border border-light">
+                                                    <div class="card draggable shadow-sm" id="" draggable="true" ondragstart="">
+                                                        <div class="card-body p-2">
+                                                            <div class="card-title">
+                                                                <p class="text-muted float-right"><?php echo  '' . $table_dateLimite[$j] . '<br>'; ?></p>
+                                                                <a href="" class="lead font-weight-light"><?php echo  '' . $table_titre[$j] . '<br>'; ?></a>
+                                                            </div>
+                                                            <p>
+                                                                <?php echo  '' . $table_description[$j] . '<br>'; ?>
+                                                            </p>
+
+                                                        </div>
                                                     </div>
-                                                    <p>
-                                                        This is a description of a item on the board.
-                                                    </p>
-                                            
+                                                    <div class="dropzone rounded" ondrop="" ondragover="" ondragleave=""> &nbsp; </div>
                                                 </div>
-                                            </div>
-                                            <div class="dropzone rounded" ondrop="" ondragover="" ondragleave=""> &nbsp; </div>
+                                            <?php
+                                            } ?>
+
+                                            <!--Ends Here-->
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                    <?php
-                                    }
-                                }
-                                }
-                    ?>
+                            <?php } ?>
+                        <?php
+                        }
+                        ?>
 
                     </div>
 
