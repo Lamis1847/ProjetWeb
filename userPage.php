@@ -1,11 +1,6 @@
 <?php
-try {
-    // On se connecte à MySQL
-    $mysqlClient = new PDO('mysql:host=localhost;dbname=projet', 'projet', 'tejorp');
-} catch (Exception $e) {
-    // En cas d'erreur, on affiche un message et on arrête tout
-    die('Erreur : ' . $e->getMessage());
-}
+include './PHP/condb.php' ;
+
 if (isset($_GET['Id']) and $_GET['Id'] > 0) {
     $getid = intval($_GET['Id']);
     $requser = $mysqlClient->prepare('SELECT * FROM user WHERE Id = ?');
@@ -24,7 +19,6 @@ if (isset($_GET['Id']) and $_GET['Id'] > 0) {
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="./css/index.css" rel="stylesheet" type="text/css" media="screen">
-        <title>Rendez Vous</title>
 
     </head>
 
